@@ -1,12 +1,8 @@
-export type ChatGPTMessage = {
-  role: string;
-  name: string;
-  content: null | string;
-  function_call: any;
-}
-
-export type UserSession = {
-  is_customer: boolean;
+// API interface
+export type UiGenOutput = {
+  display_type: DisplayType;
+  product_type: ProductType;
+  product_items: Plan[] | Device[] | Information;
 }
 
 export type UiGenInput = {
@@ -14,21 +10,10 @@ export type UiGenInput = {
   messages: ChatGPTMessage[];
 }
 
-export enum DisplayType {
-  TABLE = 'table',
-  LIST = 'list',
-}
-
-export type UiGenOutput = {
-  display_type: DisplayType;
-  product_type: ProductType;
-  product_items: Plan[] | Device[] | Information;
-}
-
-export enum ProductType {
-  PLAN = 'plan',
-  DEVICE = 'device',
-  INFORMATION = 'information',
+// General
+export type Row = {
+  ui_gen_output: UiGenOutput;
+  chat_gpt_message_index: number;
 }
 
 export type Plan = {
@@ -47,6 +32,34 @@ export type Information = {
   id: string;
   title: string;
   content: string;
+  image: string;
+}
+
+export type ChatGPTMessage = {
+  role: string;
+  name: string;
+  content: null | string;
+  function_call: any;
+}
+
+export type UserSession = {
+  is_customer: boolean;
+}
+
+export enum DisplayType {
+  TABLE = 'table',
+  CARD = 'card',
+}
+
+export type InputInfo = {
+  text: string;
+  loading: boolean;
+}
+
+export enum ProductType {
+  PLAN = 'plan',
+  DEVICE = 'device',
+  INFORMATION = 'information',
 }
 
 export enum DeviceKinds {
@@ -54,3 +67,5 @@ export enum DeviceKinds {
   TABLET = 'tablet',
   WATCH = 'watch',
 }
+
+// Componant params
