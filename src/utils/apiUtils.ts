@@ -2,6 +2,7 @@ import {
   ChatGPTMessage,
   Device,
   DisplayType,
+  Information,
   Plan,
   ProductType,
   UiGenOutput,
@@ -111,14 +112,32 @@ const plansDemo = [
   },
 ] as Plan[];
 
+const informationDemo = [
+  {
+      "description": "Sí, Verizon ofrece información en español para sus clientes. Al visitar https://espanol.verizon.com/, encontrará una versión completa del sitio de Verizon completamente en español. Puede explorar todos los servicios, ofertas y soporte que Verizon proporcione, permitiéndole comprender mejor lo que Verizon ofrece.\n\nAdemás, Verizon también proporciona soporte al cliente en español si necesita ayuda adicional. Puede visitar https://www.verizon.com/isupport/ donde hay ayuda disponible con respecto a dispositivos, facturación, cuenta y soporte técnico.\n\nLamentablemente, me gustaría señalar que el tercer enlace proporcionado (\"https://www.verizon/\") parece estar incompleto o roto y no conduce a ninguna página.\n\nEsperamos que esta información sea útil para usted y que pueda aprovechar al máximo los servicios de Verizon. Para más detalles, preguntas o inquietudes, no dude en ponerse en contacto con el equipo de asistencia al cliente de Verizon.",
+      "image_url": "https://cdn2.stablediffusionapi.com/generations/7f12479d-8b88-43f5-b2a9-93f7a2e7a14b-0.png",
+      "links": [
+          "https://espanol.verizon.com/",
+          "https://www.verizon.com/isupport/",
+          "https://www.verizon/"
+      ],
+      "title": "Verizon: ¡Tenemos información en español para nuestros clientes!"
+  }
+] as Information[];
+
 export const uiGenFetch = async (
   messages: ChatGPTMessage[],
   userSession: UserSession
 ): Promise<UiGenOutput> => {
   // TODO: integrate with backend
+  const body = {
+    messages: messages,
+    user_session: userSession,
+  };
+  console.log("body", body);
   await new Promise((resolve) => setTimeout(resolve, 1000));
   return {
-    display_type: DisplayType.TABLE,
+    display_type: DisplayType.CARD,
     messages: [
       {
         content: "show me the top 3 devices based on screen size",
@@ -146,7 +165,7 @@ export const uiGenFetch = async (
         role: "assistant",
       },
     ] as ChatGPTMessage[],
-    product_items: plansDemo,
-    product_type: ProductType.PLAN,
+    product_items: informationDemo,
+    product_type: ProductType.INFORMATION,
   };
 };

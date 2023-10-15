@@ -2,7 +2,7 @@
 export type UiGenOutput = {
   display_type: DisplayType;
   product_type: ProductType;
-  product_items: Plan[] | Device[] | Information;
+  product_items: Plan[] | Device[] | Information[];
   messages: ChatGPTMessage[];
 }
 
@@ -64,7 +64,7 @@ export type Device = {
 export type Information = {
   title: string;
   description: string;
-  link: string[];
+  links: string[];
   image_url: string;
 }
 
