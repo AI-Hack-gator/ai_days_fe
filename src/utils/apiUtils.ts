@@ -118,7 +118,7 @@ export const uiGenFetch = async (
   // TODO: integrate with backend
   await new Promise((resolve) => setTimeout(resolve, 1000));
   return {
-    display_type: "cards" as DisplayType,
+    display_type: DisplayType.TABLE,
     messages: [
       {
         content: "show me the top 3 devices based on screen size",
@@ -147,6 +147,6 @@ export const uiGenFetch = async (
       },
     ] as ChatGPTMessage[],
     product_items: plansDemo,
-    product_type: "plans" as ProductType,
+    product_type: ProductType.PLAN,
   };
 };

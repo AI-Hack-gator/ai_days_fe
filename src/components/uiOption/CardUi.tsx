@@ -104,9 +104,12 @@ const CardUi: React.FC<CardUiProps> = ({ row }) => {
 
 
   return (
-    <Flex justifyContent="space-between" gap={10} p={4} color="white" borderRadius="md" w="100%">
-      {row.ui_gen_output.product_type === ProductType.DEVICE ? renderDevice : renderPlan}
-    </Flex>
+    <VStack w="100%">
+      <Heading color="black" size="lg">{row.ui_gen_output.product_type}</Heading>
+      <Flex justifyContent="space-around" gap={10} p={4} color="white" borderRadius="md" w="100%">
+        {row.ui_gen_output.product_type === ProductType.DEVICE ? renderDevice : renderPlan}
+      </Flex>
+    </VStack>
   );
 };
 
