@@ -112,7 +112,7 @@ const CardUi: React.FC<CardUiProps> = ({ row }) => {
         {row.ui_gen_output.product_type}
       </Heading>
       <Flex 
-        justifyContent="flex-start" 
+        justifyContent="center" 
         gap={10} 
         p={4} 
         color="white" 
@@ -130,11 +130,11 @@ const CardUi: React.FC<CardUiProps> = ({ row }) => {
         }}
       >
         {row.ui_gen_output.product_type === ProductType.DEVICE ? (
-          <Flex flexShrink={0}>
+          <Flex gap={6} flexShrink={0}>
             {renderDevice}
           </Flex>
         ) : (
-          <Flex flexShrink={0}>
+          <Flex gap={6} flexShrink={0}>
             {renderPlan}
           </Flex>
         )}
