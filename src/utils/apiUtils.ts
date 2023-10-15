@@ -147,6 +147,6 @@ export const uiGenFetch = async (
       },
     ] as ChatGPTMessage[],
     product_items: plansDemo,
-    product_type: "devices" as ProductType,
+    product_type: "plans" as ProductType,
   };
 };

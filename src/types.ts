@@ -80,8 +80,8 @@ export type UserSession = {
 }
 
 export enum DisplayType {
-  TABLE = 'table',
-  CARD = 'card',
+  TABLE = 'tables',
+  CARD = 'cards',
 }
 
 export type InputInfo = {
@@ -90,8 +90,8 @@ export type InputInfo = {
 }
 
 export enum ProductType {
-  PLAN = 'plan',
-  DEVICE = 'device',
+  PLAN = 'plans',
+  DEVICE = 'devices',
   INFORMATION = 'information',
 }
 

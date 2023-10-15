@@ -34,7 +34,7 @@ const MessageInput: React.FC = () => {
   console.log("messages", messages);
 
   return (
-    <Box p={2} position="absolute" bottom="0" w="100%" zIndex="1">
+    <Box position="absolute" p={2} bottom="0" w="100%" zIndex="1">
       <Textarea
         placeholder="Type your message here"
         isDisabled={inputInfo.loading}
