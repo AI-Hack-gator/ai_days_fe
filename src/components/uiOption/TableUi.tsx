@@ -54,7 +54,7 @@ const TableUi: React.FC<TableUiProps> = ({ row }) => {
 
   return (
     <VStack w="100%" spacing={4}>
-        <Heading color="black" size="lg">{row.ui_gen_output.product_type}</Heading>
+        <Heading alignSelf="start" color="black" size="lg">{row.ui_gen_output.product_type.toUpperCase()}</Heading>
         <Box w="100%" overflowX="auto">
           <Table variant="striped" colorScheme="gray" size="md">
             <Thead>
