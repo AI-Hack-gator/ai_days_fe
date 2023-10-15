@@ -135,37 +135,47 @@ export const uiGenFetch = async (
     user_session: userSession,
   };
   console.log("body", body);
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  return {
-    display_type: DisplayType.CARD,
-    messages: [
-      {
-        content: "show me the top 3 devices based on screen size",
-        role: "user",
-      },
-      {
-        content: null,
-        function_call: {
-          arguments: '{\n  "row_type": "cards",\n  "prod_type": "devices"\n}',
-          name: "row_orchestration",
-        },
-        role: "assistant",
-      },
-      {
-        content: null,
-        function_call: {
-          arguments: '{\n  "items": ["Display"]\n}',
-          name: "focus",
-        },
-        role: "assistant",
-      },
-      {
-        content:
-          '["Samsung Galaxy S23 Ultra", "Samsung Galaxy S23", "Apple iPhone 15 Pro Max"]',
-        role: "assistant",
-      },
-    ] as ChatGPTMessage[],
-    product_items: informationDemo,
-    product_type: ProductType.INFORMATION,
-  };
+  const res =  await fetch("http://127.0.0.1:5000/process", {
+    method: "POST",
+    body: JSON.stringify(body),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const data = await res.json();
+  console.log("data", data);
+  return data as UiGenOutput;
+  // await new Promise((resolve) => setTimeout(resolve, 1000));
+  // return {
+  //   display_type: DisplayType.CARD,
+  //   messages: [
+  //     {
+  //       content: "show me the top 3 devices based on screen size",
+  //       role: "user",
+  //     },
+  //     {
+  //       content: null,
+  //       function_call: {
+  //         arguments: '{\n  "row_type": "cards",\n  "prod_type": "devices"\n}',
+  //         name: "row_orchestration",
+  //       },
+  //       role: "assistant",
+  //     },
+  //     {
+  //       content: null,
+  //       function_call: {
+  //         arguments: '{\n  "items": ["Display"]\n}',
+  //         name: "focus",
+  //       },
+  //       role: "assistant",
+  //     },
+  //     {
+  //       content:
+  //         '["Samsung Galaxy S23 Ultra", "Samsung Galaxy S23", "Apple iPhone 15 Pro Max"]',
+  //       role: "assistant",
+  //     },
+  //   ] as ChatGPTMessage[],
+  //   product_items: informationDemo,
+  //   product_type: ProductType.INFORMATION,
+  // };
 };

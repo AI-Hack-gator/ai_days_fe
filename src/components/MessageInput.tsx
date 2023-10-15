@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { Textarea, Box, Button } from "@chakra-ui/react";
 import { ChatContext, ChatContextType } from "../contexts/ChatContext";
 import { uiGenFetch } from "../utils/apiUtils";
+import { ChatGPTMessage } from "../types";
 
 const MessageInput: React.FC = () => {
   const { messages, setMessages, rows, setRows, userSession, inputInfo, setInputInfo } =
@@ -17,8 +18,8 @@ const MessageInput: React.FC = () => {
     const newMessages = [
       ...messages,
       { role: "user", content: inputInfo.text },
-    ];
-    const res = await uiGenFetch(messages, userSession);
+    ] as ChatGPTMessage[];
+    const res = await uiGenFetch(newMessages, userSession);
 
     setRows((prev) => [...prev, {
       ui_gen_output: res,

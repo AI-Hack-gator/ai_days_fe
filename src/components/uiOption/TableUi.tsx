@@ -19,6 +19,7 @@ interface TableUiProps {
 
 const TableUi: React.FC<TableUiProps> = ({ row }) => {
   const productItems = row.ui_gen_output.product_items as (Device | Plan)[];
+  console.log("show table")
 
   const renderTableRows = (item: Device | Plan) => {
     return Object.entries(item).map(([key, value]) => {

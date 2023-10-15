@@ -39,10 +39,13 @@ const CardUi: React.FC<CardUiProps> = ({ row }) => {
   const renderDevice = useMemo(() => {
     // @ts-ignore
     return productItems.map((device: Device) => (
-      <Card backgroundColor="brandPrimary.500" color="white"  maxW="sm">
+        <Card 
+          maxW="sm" 
+          width="300px"   // This will ensure each card has the same width
+        >
         <CardBody>
-          <Image src={device.image} alt={device.product} borderRadius="lg" />
           <VStack align="start" spacing={4}>
+            <Image src={device.image} alt={device.product} borderRadius="lg" />
             <Heading size="md">{device.product}</Heading>
             <Text>{device.overview}</Text>
             <Text color="brandPrimary.500" fontSize="2xl">
@@ -67,7 +70,7 @@ const CardUi: React.FC<CardUiProps> = ({ row }) => {
   const renderPlan = useMemo(() => {
     // @ts-ignore
     return productItems.map((plan: Plan) => (
-      <Card colorScheme=''>
+      <Card width="200px">
         <CardHeader>
           <Heading size="md">{plan.product}</Heading>
         </CardHeader>
@@ -104,10 +107,37 @@ const CardUi: React.FC<CardUiProps> = ({ row }) => {
 
 
   return (
-    <VStack w="100%">
-      <Heading color="black" size="lg">{row.ui_gen_output.product_type}</Heading>
-      <Flex justifyContent="space-around" gap={10} p={4} color="white" borderRadius="md" w="100%">
-        {row.ui_gen_output.product_type === ProductType.DEVICE ? renderDevice : renderPlan}
+    <VStack w="100%" alignItems="flex-start">
+      <Heading color="black" size="lg" textTransform="uppercase">
+        {row.ui_gen_output.product_type}
+      </Heading>
+      <Flex 
+        justifyContent="flex-start" 
+        gap={10} 
+        p={4} 
+        color="white" 
+        borderRadius="md" 
+        w="100%" 
+        overflowX="auto" 
+        css={{
+          '&::-webkit-scrollbar': {
+            width: '4px',
+          },
+          '&::-webkit-scrollbar-thumb': {
+            backgroundColor: '#888',
+            borderRadius: '2px',
+          },
+        }}
+      >
+        {row.ui_gen_output.product_type === ProductType.DEVICE ? (
+          <Flex flexShrink={0}>
+            {renderDevice}
+          </Flex>
+        ) : (
+          <Flex flexShrink={0}>
+            {renderPlan}
+          </Flex>
+        )}
       </Flex>
     </VStack>
   );

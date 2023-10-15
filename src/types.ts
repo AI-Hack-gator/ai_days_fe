@@ -80,7 +80,7 @@ export type UserSession = {
 }
 
 export enum DisplayType {
-  TABLE = 'tables',
+  TABLE = 'table',
   CARD = 'cards',
 }
 

@@ -9,7 +9,7 @@ import { ChatProvider } from '../contexts/ChatContext';
 const Home: React.FC = () => {
   return (
     <ChatProvider>
-      <Flex h="100vh" direction="column" position="relative">
+      <Flex backgroundColor="#f1f1f1" h="100vh" direction="column" position="relative">
         <NavBar />
         <Flex direction="column" h="100%" overflowY="auto" pt="60px" pb="100px">
           <PageContent />
