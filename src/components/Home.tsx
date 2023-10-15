@@ -1,29 +1,19 @@
 // components/Home.tsx
 import React from 'react';
-import { Box, Button, Flex } from '@chakra-ui/react';
-import { ChatGPTMessage, InputInfo, Row, UserSession } from '../types';
+import { Flex } from '@chakra-ui/react';
 import MessageInput from './MessageInput';
+import NavBar from './NavBar';
+import PageContent from './PageContent';
 import { ChatProvider } from '../contexts/ChatContext';
 
 const Home: React.FC = () => {
-  const [messages, setMessages] = React.useState<ChatGPTMessage[]>([]);
-  const [rows, setRows] = React.useState<Row[]>([]);
-  const [userSession, setUserSession] = React.useState<UserSession>({
-    is_customer: true,
-  });
-  const [inputInfo, setInputInfo] = React.useState<InputInfo>({
-    text: '',
-    loading: false,
-  });
-
   return (
     <ChatProvider>
-      <Box>
-        <Button colorScheme="teal">
-          Hiiii
-        </Button>
+      <Flex direction="column" h="100vh" position="relative">
+        <NavBar />
+        <PageContent />
         <MessageInput />
-      </Box>
+      </Flex>
     </ChatProvider>
   );
 };
