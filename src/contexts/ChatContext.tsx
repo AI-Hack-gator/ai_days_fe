@@ -18,7 +18,7 @@ const defaultContextValue = {
   setMessages: () => {},
   rows: [],
   setRows: () => {},
-  userSession: { is_customer: true },
+  userSession: { is_customer: false },
   setUserSession: () => {},
   inputInfo: { text: '', loading: false },
   setInputInfo: () => {},
