@@ -1,6 +1,6 @@
 // components/MessageInput.tsx
 import React, { useContext } from "react";
-import { Textarea, Box, Button } from "@chakra-ui/react";
+import { Textarea, Box, Button, Flex } from "@chakra-ui/react";
 import { ChatContext, ChatContextType } from "../contexts/ChatContext";
 import { uiGenFetch } from "../utils/apiUtils";
 import { ChatGPTMessage } from "../types";
@@ -13,11 +13,11 @@ const MessageInput: React.FC = () => {
     setInputInfo((prev) => ({ ...prev, text: e.target.value }));
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (prompt: string) => {
     setInputInfo((prev) => ({ ...prev, loading: true }));
     const newMessages = [
       ...messages,
-      { role: "user", content: inputInfo.text },
+      { role: "user", content: prompt },
     ] as ChatGPTMessage[];
     const res = await uiGenFetch(newMessages, userSession);
 
@@ -52,11 +52,50 @@ const MessageInput: React.FC = () => {
         right="30px"
         bottom="30px"
         colorScheme="brandSecondary"
-        onClick={handleSubmit}
+        onClick={() => handleSubmit(inputInfo.text)}
         mt={2}
       >
         Submit
       </Button>
+      <Flex
+        position="absolute"
+        left="10px"
+        top="-50px"
+        gap={4}
+      >
+        <Button
+          zIndex={100}
+          isLoading={inputInfo.loading}
+          width="400px"
+          variant="outline"
+          whiteSpace="pre-wrap"
+          overflow="hidden"
+          textOverflow="ellipsis"
+          textAlign="start"
+          justifyContent="flex-start"
+          colorScheme="brandSecondary"
+          onClick={() => handleSubmit("Show me the best plans verizon offers.")}
+          mt={2}
+        >
+          Show me the best plans verizon offers.
+        </Button>
+        <Button
+          zIndex={100}
+          isLoading={inputInfo.loading}
+          width="400px"
+          variant="outline"
+          whiteSpace="pre-wrap"
+          overflow="hidden"
+          textOverflow="ellipsis"
+          textAlign="start"
+          justifyContent="flex-start"
+          colorScheme="brandSecondary"
+          onClick={() => handleSubmit("Does verizon support Gainesville Florida?")}
+          mt={2}
+        >
+          Does verizon support Gainesville Florida?
+        </Button>
+      </Flex>
     </Box>
   );
 };
